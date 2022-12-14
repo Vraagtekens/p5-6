@@ -1,39 +1,39 @@
+let angle = 0;
+let angleV = 0.1;
+let angleA = 0;
+let sticks = []
+
 function setup() {
-    createCanvas(400, 400, WEBGL);
-    angleMode(DEGREES)
+    createCanvas(400, 400);
+    angleMode(RADIANS)
+
+    fillArraySticks();
 }
 function draw() {
-    orbitControl();
-    background(30);
-    rotateX(frameCount *0.6)
-    rotateY(frameCount*0.2)
+    angleV = map(mouseX, 0, width, -0.1, 0.1)
+    angleV = constrain(angleV, -0.1, 0.1)
 
-    noFill()
+    background(40);
 
-    for (let i = 0; i < 40; i++) {
-        
-        // let value = (100 + i * 10)
-        // stroke(255, value, 255)
+    sticks.forEach(element => {
+        element.draw()        
+    });
 
-        let r = map(sin(frameCount / 2), -1, 1, 100, 200)
-        let g = map(i, 0, 20, 0, 255)
-        let b = map(cos(frameCount), -1, 1, 255, 0)
-        
-        stroke(r, g, b)
-        rotate(5)
 
-        beginShape()
-
-        for (let j = 0; j < 360; j += 100){
-            let rad = i * 3
-            let x = rad * cos(j)
-            let y = rad * sin(j)
-            let z = sin(frameCount * 2 + i * 10) * 90
-            
-            vertex(x, y, z)
-            
-        }
-        endShape(CLOSE)
-    
-        }
+    angle += angleV
+    angleV += angleA
 }
+
+function fillArraySticks(){    
+    const margin = 40
+    
+    for (let x = 0; x < width + margin; x += margin) {
+        for (let y = 0; y < height + margin; y += margin) {
+            if(!(x === width || y === width || x === 0 || y === 0)){
+                sticks.push(new Stick(x, y))
+            } 
+        }
+      }
+}   
+
+
