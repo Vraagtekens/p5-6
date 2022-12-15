@@ -5,12 +5,12 @@ let allInstances = []
 let onOff = true;
 
 function setup() {
-    createCanvas(300, 600);
+    createCanvas(windowWidth - 50, windowHeight -50);
     angleMode(RADIANS)
     frameRate(30)
 
     background(40);
-    fillAllInstances(230, 30);
+    fillAllInstances(230, windowWidth / 12 + extraMargin());
 }
 function draw() {
     allInstances.forEach(element => {
@@ -20,38 +20,52 @@ function draw() {
     angle += angleV
     angleV += angleA
 
-    x++;
+    m++;
 }
 
 function fillAllInstances(color, margin){        
     for (let x = 0; x < width + margin; x += margin) {
         for (let y = 0; y < height + margin; y += margin) {
-            if(!(x=== width || y === height || x === 0 || y === 0)){
+            if(true){
                 allInstances.push(new BasicShape(x, y, color))
             } 
         }
       }
 }   
 
-let x = 0;
-let lastX = x;
+let m = 0;
+let lastM = m;
 function mousePressed(){
     //lastX + 10 is for the mobile users they quick two times accidentally
-    if(lastX + 10 < x){
+    if(lastM + 10 < m){
         if(onOff === true){
             background(230);
             angleV = 0.1
-            fillAllInstances(30, 15);
+            fillAllInstances(30, (windowWidth / 16) + extraMargin());
             onOff = false
         } else {
             allInstances = [];
             background(40);
             angleV = 0.05
-            fillAllInstances(230, 30);
+            fillAllInstances(230, windowWidth / 12 + extraMargin());
             onOff = true
         }
     }
-    lastX = x
+    lastM = m
+}
+
+function extraMargin(){
+    let margin = 0;
+    if(windowWidth > 400){
+        margin -= 5
+    } 
+    if(windowWidth > 700){
+        margin -= 20
+    } 
+    if(windowWidth > 1000){
+        margin -= 40
+    }
+    return margin;
 }
 
 
