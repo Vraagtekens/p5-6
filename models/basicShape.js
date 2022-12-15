@@ -1,4 +1,4 @@
-class Stick{
+class BasicShape{
     x
     y
     
@@ -10,18 +10,18 @@ class Stick{
 
     draw(){
         push();
+        //color
+        
         //Transform shape
         rectMode(CENTER)
         translate(this.x, this.y)
         rotate(angle + this.x + this.y )
-    
+        
         //Draw shape
         noStroke()
-        fill(255)
-        rect(0, 0, 30, 5, 20)
+        fill(this.color)
+        rect(0, (angle + this.x + this.y) * 0.0225, 5, 5, 20)
         pop();
     }
-
-
 
 }
