@@ -5,7 +5,7 @@ let allInstances = []
 let onOff = true;
 
 function setup() {
-    createCanvas(windowWidth - 50, windowHeight -50);
+    createCanvas(windowWidth, windowHeight);
     angleMode(RADIANS)
     frameRate(30)
 
