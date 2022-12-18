@@ -21,6 +21,17 @@ function draw() {
     angleV += angleA
 
     m++;
+
+    if(frameCount === 1){
+        noLoop();
+    }
+}
+
+function windowResized(){
+    allInstances = [];
+    resizeCanvas(windowWidth, windowHeight)
+    background(40);
+    fillAllInstances(230, windowWidth / 12 + extraMargin());
 }
 
 function fillAllInstances(color, margin){        
@@ -36,9 +47,12 @@ function fillAllInstances(color, margin){
 let m = 0;
 let lastM = m;
 function mousePressed(){
+    loop();
+
     //lastX + 10 is for the mobile users they quick two times accidentally
     if(lastM + 10 < m){
         if(onOff === true){
+            allInstances = [];
             background(230);
             angleV = 0.1
             fillAllInstances(30, (windowWidth / 16) + extraMargin());
