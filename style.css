@@ -10,13 +10,37 @@ html, body {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    height: 800px;
 }
 
 #frame{
     width: 600px;
     height: 600px;
 }
+
+@media only screen and (max-width: 410px){
+	/*Small smartphones [325px -> 410px]*/
+    #frame{
+        width: 300px;
+        height: 300px;
+    } 
+}
+
+@media only screen and (max-width: 602px){
+	/*Big smartphones [426px -> 600px]*/
+    #frame{
+        width: 400px;
+        height: 400px;
+    } 
+}
+@media only screen and (max-width: 410px){
+	/*Small smartphones [325px -> 410px]*/
+    #frame{
+        width: 300px;
+        height: 300px;
+    } 
+}
+
 
 /* sketch */
 #frame canvas{
