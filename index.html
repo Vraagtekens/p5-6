@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
     <meta charset="utf-8" />
     <meta name="viewport"  
       content="width=device-width, initial-scale=1.0">
     
-
+    <!-- vendors -->
     <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+
     <script src="./models/basicShape.js" ></script>
     <script src="./sketch.js" ></script>
     <script src="./default.js" ></script>
+
+    <!-- github -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!-- <script src="https://github.com/Vraagtekens/p5-template/tree/main/js/default.js"></script> -->
 </head>
 <body>
-  <div id="frame-box" class="frame-box">
-    <div id="frame"></div>
+  <div id="navbar"></div>
+  <!-- <script src="https://raw.githubusercontent.com/Vraagtekens/p5-template/main/views/navbarView.html"></script> -->
+
+  <div class="main-frame-box">
+    <div id="frame-box" class="frame-box">
+      <div class="title">p5-2</div>
+      <div id="frame"></div>
+      <div class="bio">bio</div>
+      <button id="fullscreenButton">fullscreen</button>
+    </div>
   </div>
 
   <div class="test"></div>

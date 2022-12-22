@@ -1,24 +1,47 @@
-
 window.onload = async function() {
-    await getRepo()
-
-    await getRepoFile()
+    fullScreenButtonEvent();
+    
 };
 
 async function getRepo(){
-    const url = "https://api.github.com/repos/Vraagtekens/p5-4/contents"
+    const url = "https://api.github.com/repos/Vraagtekens/p5-template/contents"
     const response = await fetch(url)
     const result = await response.json()
 
     console.log(result)
 }
 
-async function getRepoFile(){
-    const url = "https://raw.githubusercontent.com/Vraagtekens/p5-4/main/index.html"
-    const response = await fetch(url);
-    const result = await response;
 
-    console.log(response)
-    console.log(result)
-    document.querySelector(".test").innerHTML = await result
+
+async function getRepoScript(){
+    let x;
+    $.get("https://raw.githubusercontent.com/Vraagtekens/p5-template/main/js/navbarController.js", async function(data) {
+        // $(".test").html(data);
+
+        x = await data
+        console.log(x)
+    });
+
+    
+}
+
+
+function fullScreenButtonEvent(){
+    const button = document.querySelector("#fullscreenButton");
+    button.addEventListener('click', (event) => {
+        openFullscreen()
+        console.log("click")
+    });
+
+}
+
+function openFullscreen() {
+    const elem = document.querySelector("#frame");
+    if (elem.requestFullscreen) {
+    elem.requestFullscreen();
+    } else if (elem.webkitRequestFullscreen) { /* Safari */
+    elem.webkitRequestFullscreen();
+    } else if (elem.msRequestFullscreen) { /* IE11 */
+    elem.msRequestFullscreen();
+    }
 }

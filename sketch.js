@@ -1,8 +1,9 @@
 function inIframe() {
     //checks if webpage is loaded with iframe
-    const frameBox = document.querySelector(".frame-box");
+    const frameBox = document.querySelector(".main-frame-box");
     if(window.location !== window.parent.location){
-        frameBox.classList.remove("frame-box")
+        frameBox.querySelector(".title").remove()
+        frameBox.classList.remove("main-frame-box")
     }  
 }
 
