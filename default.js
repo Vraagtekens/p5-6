@@ -1,7 +1,15 @@
 window.onload = async function() {
-    fullScreenButtonEvent();
+    controllerLoad();;
     
 };
+
+function controllerLoad(){
+    if(window.location === window.parent.location){
+        fullScreenButtonEvent();
+    } else {
+        
+    }
+}
 
 async function getRepo(){
     const url = "https://api.github.com/repos/Vraagtekens/p5-template/contents"
@@ -17,7 +25,6 @@ async function getRepoScript(){
     let x;
     $.get("https://raw.githubusercontent.com/Vraagtekens/p5-template/main/js/navbarController.js", async function(data) {
         // $(".test").html(data);
-
         x = await data
         console.log(x)
     });

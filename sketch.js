@@ -1,19 +1,35 @@
-function inIframe() {
+function getFrameSize() {
     //checks if webpage is loaded with iframe
-    const frameBox = document.querySelector(".main-frame-box");
+    const frame = document.querySelector("#frame");
+    let frameWidth;
+    let frameHeight;
     if(window.location !== window.parent.location){
-        frameBox.querySelector(".title").remove()
-        frameBox.classList.remove("main-frame-box")
+        frameWidth = windowWidth
+        frameHeight = windowHeight;
+    }  else {
+        frameWidth = frame.offsetWidth
+        frameHeight = frame.offsetHeight
+    }
+    
+    console.log([frameWidth, frameHeight])
+    return [frameWidth, frameHeight]
+}
+
+function iframe(){
+    const frameBox = document.querySelector(".main-frame-box");
+    const frame = document.querySelector("#frame");
+    const iframePlace = document.querySelector("#iframePlace")
+    if(window.location !== window.parent.location){
+        iframePlace.appendChild(frame)
+        frameBox.remove()
     }  
 }
 
 function setup() {
-    const frame = document.querySelector("#frame");
-    let frameWidth = frame.offsetWidth;   
-    let frameHeight = frame.offsetHeight;   
-    inIframe()
+    iframe();
+    const x = getFrameSize()    
 
-    let canvas = createCanvas(frameWidth, frameHeight);
+    let canvas = createCanvas(x[0], x[1]);
     canvas.parent('frame');
     angleMode(RADIANS)
     frameRate(30)
@@ -42,9 +58,8 @@ function draw() {
 }
 
 function windowResized(){
-    frameWidth = frame.offsetWidth;;
-    frameHeight = frame.offsetHeight; 
-    resizeCanvas(frameWidth, frameHeight)
+    const x = getFrameSize()
+    resizeCanvas(x[0], x[1])
     background(30);
 }
 
