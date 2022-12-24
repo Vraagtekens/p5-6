@@ -1,54 +1,21 @@
+import {MainController} from "./models/mainController.js"
+
 window.onload = async function() {
-    controllerLoad();;
-    
+    //MainController only gets loaded if frame is not in an iframe
+    if(window.location === window.parent.location){
+        const mainController = new MainController();
+    } else {
+        iframe();
+    }
 };
 
-function controllerLoad(){
-    if(window.location === window.parent.location){
-        fullScreenButtonEvent();
-    } else {
-        
-    }
-}
 
-async function getRepo(){
-    const url = "https://api.github.com/repos/Vraagtekens/p5-template/contents"
-    const response = await fetch(url)
-    const result = await response.json()
+//iframe is true remove everything but the sketch
+function iframe(){
+    const frameBox = document.querySelector(".main-frame-box");
+    const frame = document.querySelector("#frame");
+    const iframePlace = document.querySelector("#iframePlace")
 
-    console.log(result)
-}
-
-
-
-async function getRepoScript(){
-    let x;
-    $.get("https://raw.githubusercontent.com/Vraagtekens/p5-template/main/js/navbarController.js", async function(data) {
-        // $(".test").html(data);
-        x = await data
-        console.log(x)
-    });
-
-    
-}
-
-
-function fullScreenButtonEvent(){
-    const button = document.querySelector("#fullscreenButton");
-    button.addEventListener('click', (event) => {
-        openFullscreen()
-        console.log("click")
-    });
-
-}
-
-function openFullscreen() {
-    const elem = document.querySelector("#frame");
-    if (elem.requestFullscreen) {
-    elem.requestFullscreen();
-    } else if (elem.webkitRequestFullscreen) { /* Safari */
-    elem.webkitRequestFullscreen();
-    } else if (elem.msRequestFullscreen) { /* IE11 */
-    elem.msRequestFullscreen();
-    }
+    iframePlace.appendChild(frame)
+    frameBox.remove()
 }

@@ -4,16 +4,16 @@
     <meta charset="utf-8" />
     <meta name="viewport"  
       content="width=device-width, initial-scale=1.0">
-    <title>p5-</title>
+    <title></title>
     
     <!-- vendors -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin">
     <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 
     <!-- js -->
-    <script src="./models/basicShape.js" ></script>
-    <script src="./sketch.js" ></script>
-    <script src="./default.js" ></script>
+    <script src="./sketch.js"></script>
+    <script src="./default.js" type="module"></script>
 
     <!-- css -->
     <link rel="stylesheet" type="text/css" href="style.css">
@@ -23,6 +23,7 @@
 
   <div class="main-frame-box">
     <div id="frame-box" class="frame-box">
+      <div class="frame-title"></div>
       <div id="frame"></div>
       <button id="fullscreenButton">fullscreen</button>
     </div>
