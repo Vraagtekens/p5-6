@@ -6,13 +6,15 @@ html, body {
     font-family: cabin, sans-serif;
 }
 
-
-/* sketch box */
-.main-frame-box{
+.content-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
+}
+
+/* sketch box */
+.main-frame-box{
+    background-color: whitesmoke;
 }
 
 #frame{
@@ -34,7 +36,6 @@ html, body {
     } 
 }
 
-
 /* sketch */
 #frame canvas{
     border-radius: 1px;
@@ -47,4 +48,19 @@ html, body {
 .frame-title{
     font-size: 40px;
     margin: 10px;
+}
+
+
+.main-sketch-button{
+    margin-top: 10px;
+    padding: 10px;
+    background-color: whitesmoke;
+    display: flex;
+    justify-content: center;
+}
+
+.frame-footer{
+    display: flex;
+    justify-content: space-between;
+    padding: 5px;
 }

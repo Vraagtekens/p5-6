@@ -110,7 +110,7 @@ class BasicShape{
         
         //Draw shape
         noStroke()
-        rect(0, 0, this.size, this.size, 30)
+        rect(0, 0, this.size, this.size, 0)
         pop();
     }
 
@@ -138,7 +138,7 @@ class BasicShape{
             this.b = random(30, 255)
         } 
     }
-
+    
 }
 
 

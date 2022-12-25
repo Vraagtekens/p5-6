@@ -2,6 +2,9 @@ export class MainController{
     frame;
     fullscreenButton;
     frameTitle;
+    versionInput;
+    sketchScript
+
     repoName;
     repoData;
 
@@ -10,15 +13,32 @@ export class MainController{
         this.frame = document.querySelector("#frame");
         this.fullscreenButton = document.querySelector("#fullscreenButton");
         this.frameTitle = document.querySelector(".frame-title")
-
+        this.versionInput = document.querySelector("#version");
+        this.sketchScript = document.querySelector("#sketch-script")
         this.start();
     }
 
     async start(){
         await this.getRepo();
 
+        this.versionOptions();
         this.setTitle();
         this.fullScreenButtonEvent();
+
+        this.changeVersion();
+    }
+
+    async versionOptions(){
+        let kanker = $.get("./sketches/sketch-1.js");
+    }
+
+    changeVersion(){
+        this.versionInput.addEventListener("change", (event) => {
+            const version = this.versionInput.value
+            localStorage.setItem("sketch", "./sketches/" + version + ".js")
+            console.log(localStorage.getItem("sketch"))
+            // window.location.reload();
+        })
     }
 
     fullScreenButtonEvent(){
@@ -43,6 +63,10 @@ export class MainController{
         console.log(this.repoData)
     }
     
+    async getCode(path){
+        const z = await $.get(path);
+        console.log(z)
+    }
 
     async getRepo(){
         const url = "https://api.github.com/repos/Vraagtekens/" + this.repoName
@@ -51,4 +75,6 @@ export class MainController{
     
         this.repoData = result;
     }
+
+
 }

@@ -12,7 +12,6 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
 
     <!-- js -->
-    <script src="./sketch.js"></script>
     <script src="./default.js" type="module"></script>
 
     <!-- css -->
@@ -21,12 +20,40 @@
 <body>  
   <div id="iframePlace"></div>
 
-  <div class="main-frame-box">
-    <div id="frame-box" class="frame-box">
-      <div class="frame-title"></div>
-      <div id="frame"></div>
-      <button id="fullscreenButton">fullscreen</button>
+  <div class="content-container">
+    <div>
+
+      <div class="main-frame-box">
+        <div id="frame-box" class="frame-box">
+          <div class="frame-title"></div>
+          <div id="frame"></div>
+
+
+          <div class="frame-footer">
+              <div>
+                <label>version: </label>
+                <select id="version">
+                    <option value="sketch-1">sketch-1</option>
+                    <option value="sketch-2">sketch-2</option>
+                </select>
+              </div>
+            
+              <button id="fullscreenButton">fullscreen</button>
+          </div>
+        </div>
+      </div>
+  
+      <!-- <div class="main-sketch-button">
+
+        <div class="">
+
+        </div>
+        <button class="sketch-button">sketch-2</button>
+      </div> -->
+
     </div>
   </div>
+    
+  
 </body>
 </html>
