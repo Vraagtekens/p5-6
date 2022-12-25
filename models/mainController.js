@@ -3,10 +3,13 @@ export class MainController{
     fullscreenButton;
     frameTitle;
     versionInput;
-    sketchScript
+    sketchScript;
+    sketchName;
 
     repoName;
     repoData;
+    sketchFolder;
+    code;
 
     constructor(){
         this.repoName = "p5-5"
@@ -20,8 +23,11 @@ export class MainController{
 
     async start(){
         await this.getRepo();
+        await this.getSketchFolder();
+        await this.getCode();
 
         this.versionOptions();
+        this.setCode();
         this.setTitle();
         this.fullScreenButtonEvent();
 
@@ -29,15 +35,33 @@ export class MainController{
     }
 
     async versionOptions(){
-        let kanker = $.get("./sketches/sketch-1.js");
+        const template = document.querySelector("#version-option")
+        const firstOption = document.querySelector("#first-option")
+        for (let i = 0; i < this.sketchFolder.length; i++) {
+            let sketchPath = this.sketchFolder[i].path
+            let sketchName = this.sketchFolder[i].name
+
+            if(localStorage.getItem("sketch") === sketchPath){
+                firstOption.textContent = sketchName
+                firstOption.value = sketchPath
+                this.sketchName = sketchName;
+            } else {
+                let x = template.content.cloneNode(true);
+                let option = x.querySelector(".version-option")
+                
+                option.textContent = sketchName
+                option.value = sketchPath
+
+                this.versionInput.append(x)
+            }
+        }
     }
 
     changeVersion(){
-        this.versionInput.addEventListener("change", (event) => {
+        this.versionInput.addEventListener("change", () => {
             const version = this.versionInput.value
-            localStorage.setItem("sketch", "./sketches/" + version + ".js")
-            console.log(localStorage.getItem("sketch"))
-            // window.location.reload();
+            localStorage.setItem("sketch", version)
+            window.location.reload();
         })
     }
 
@@ -60,12 +84,20 @@ export class MainController{
     setTitle(){
         document.title = this.repoName
         this.frameTitle.textContent = this.repoName
-        console.log(this.repoData)
     }
     
-    async getCode(path){
-        const z = await $.get(path);
-        console.log(z)
+    setCode(){
+        document.querySelector(".code-title").textContent = this.sketchName;
+        document.querySelector(".language-js").textContent = this.code;
+
+        //highlight code
+        hljs.highlightAll(); 
+        hljs.initLineNumbersOnLoad();
+    }
+
+    async getCode(){
+        const z = await $.get(localStorage.getItem("sketch"));
+        this.code = z
     }
 
     async getRepo(){
@@ -74,6 +106,16 @@ export class MainController{
         const result = await response.json()
     
         this.repoData = result;
+    }
+
+    async getSketchFolder(){
+        const url = "https://api.github.com/repos/Vraagtekens/" + this.repoName + "/contents/sketches"
+        const response = await fetch(url)
+        const result = await response.json()
+    
+        this.sketchFolder = result;
+        console.log(result)
+
     }
 
 

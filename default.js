@@ -8,8 +8,6 @@ window.onload = async function() {
     } else {
         iframe();
     }
-
-
 };
 
 //iframe is true remove everything but the sketch
@@ -23,16 +21,22 @@ function iframe(){
 }
 
 
+
+
 function loadJS() {
     let scriptEle = document.createElement("script");
     
-    scriptEle.setAttribute("src", localStorage.getItem("sketch"));
+    if(window.location === window.parent.location){
+        scriptEle.setAttribute("src", localStorage.getItem("sketch"));
+       
+    }else{
+        scriptEle.setAttribute("src", "./sketches/sketch-2.js");
+    }
+    
     scriptEle.setAttribute("type", "text/javascript");
-  
     document.body.appendChild(scriptEle);
 }
   
 loadJS();
-
 
 

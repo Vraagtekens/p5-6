@@ -10,6 +10,11 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Cabin">
     <script src= "https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.js"></script>
+    
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/a11y-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlightjs-line-numbers.js/2.8.0/highlightjs-line-numbers.min.js"></script>
+    <!-- <script>hljs.highlightAll(); hljs.initLineNumbersOnLoad();</script> -->
 
     <!-- js -->
     <script src="./default.js" type="module"></script>
@@ -33,8 +38,10 @@
               <div>
                 <label>version: </label>
                 <select id="version">
-                    <option value="sketch-1">sketch-1</option>
-                    <option value="sketch-2">sketch-2</option>
+                  <option id="first-option" class="version-option" value=""></option>
+                  <template id="version-option">
+                    <option class="version-option" value="sketch-1">sketch-1</option>
+                  </template>
                 </select>
               </div>
             
@@ -43,13 +50,14 @@
         </div>
       </div>
   
-      <!-- <div class="main-sketch-button">
-
-        <div class="">
-
+      <div class="main-code-box">
+        <div class="code-title">
+            sketch-1.js
         </div>
-        <button class="sketch-button">sketch-2</button>
-      </div> -->
+        <div class="code">
+          <pre><code class="language-js"></code></pre>
+        </div>
+      </div>
 
     </div>
   </div>
