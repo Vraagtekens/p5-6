@@ -58,11 +58,25 @@ html, body {
     padding: 5px;
 }
 
+/* code box */
 .main-code-box{
     margin-top: 10px;
     background-color: whitesmoke;
 }
 
-.language-js{
+.code-buttons{
+    padding: 5px;
+    text-align: center;
+}
+
+.code-title{
+    background-color:cadetblue;
+}
+
+#code-content{
     height: 600px;
+}
+
+.code pre{
+    margin-top: 0;
 }

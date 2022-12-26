@@ -29,6 +29,7 @@ function loadJS() {
     if(window.location === window.parent.location){
         if (localStorage.getItem("sketch") === undefined){
             scriptEle.setAttribute("src", "./sketches/sketch-2.js");
+            localStorage.setItem("sketch", "./sketches/sketch-2.js");
         } else {
             scriptEle.setAttribute("src", localStorage.getItem("sketch"));
         }

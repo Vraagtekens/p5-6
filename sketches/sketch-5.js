@@ -28,6 +28,10 @@ function draw() {
         element.draw()
         element.changeCoord()
 
+        points.forEach(e => {
+            element.checkCoord(e)
+
+        });
     });
 
     if(frameCount === 1){
@@ -36,15 +40,12 @@ function draw() {
 }
 
 function mousePressed(){
-    (points[0].x <= mouseX + 1 && points[0].x >= mouseX - 1)
+    console.log("x" + mouseX)
+    console.log("y" + mouseY)
 }
 
 let points = [];
-let maxWidth;
-let minWidth;
-let maxHeight; 
-let minHeiht;
-function setFrameSize(){
+function fillArray(){
     let length = 400;
     if(windowHeight >= windowWidth){
         length = 300
@@ -53,15 +54,12 @@ function setFrameSize(){
         length = 200
     }
 
-    maxWidth = (width/2) + length
-    minWidth = (width/2) - length
-    maxHeight = (height/2) + length
-    minHeiht = (height/2) - length
-}
-
-function fillArray(){
-    setFrameSize();
     const margin = 50
+    const maxWidth = (width/2) + length
+    const minWidth = (width/2) - length
+    const maxHeight = (height/2) + length
+    const minHeiht = (height/2) - length
+
     for (let x = minWidth; x < maxWidth; x += margin) {
         for (let y = minHeiht; y < maxHeight; y += margin) {
             if(!(x === minWidth || x === maxWidth || y === minHeiht || y === maxHeight))
@@ -69,7 +67,6 @@ function fillArray(){
         }
     }
 }
-
 
 class BasicShape{
     startX
@@ -89,19 +86,21 @@ class BasicShape{
         this.startY = y
         this.size = 30;
 
-        this.changeColor()
+        this.r = random(30, 255)
+        this.g = random(30, 255)
+        this.b = random(30, 255)
     }
 
     draw(){
         push();
         //color
         
-        fill(this.r, this.g, this.b, this.b)
+        fill(252, 252, 252, this.b)
 
         //Transform shape
         rectMode(CENTER)
         translate(this.x, this.y)
-        // rotate(frameCount * 0.1);
+        // rotate(angle + this.x + this.y)
         
         //Draw shape
         rect(0, 0, this.size, this.size, 0)
@@ -110,13 +109,9 @@ class BasicShape{
 
     changeCoord(){
         const i = 2
-        if((this.x <= mouseX + 2 && this.x >= mouseX - 2) &&
-        (this.y <= mouseY + 2 && this.y >= mouseY - 2)){
-            this.x = this.startX;
-            this.y = this.startY
-            this.size = 50
+        if(this.x === mouseX && this.y === mouseY){
+            console.log("bruh")
 
-            this.changeColor()
         } else {
             this.size = 30
             if (this.x < mouseX){
@@ -131,12 +126,20 @@ class BasicShape{
                 this.y -= i
             }
         }
+
     }
 
-    changeColor(){
-        this.r = random(30, 255)
-        this.g = random(30, 255)
-        this.b = random(30, 255)
+    checkCoord(e){
+        //checkt ook eigen waarde
+        if((this.x === e.x || this.y === e.y) && (e.x === this.startX || e.y === this.startY)){
+            this.x = this.startX
+            this.y = this.startY
+            this.b = random(30, 255)
+
+        } else {
+            // this.size = 10
+        }
+        
     }
 
     

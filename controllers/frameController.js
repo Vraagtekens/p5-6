@@ -94,8 +94,8 @@ export class FrameController{
 
     changeVersion(){
         this.versionInput.addEventListener("change", () => {
-            const version = this.versionInput.value
-            localStorage.setItem("sketch", version)
+            const version = this.versionInput.value;
+            localStorage.setItem("sketch", version);
             window.location.reload();
         })
     }

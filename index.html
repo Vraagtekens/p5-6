@@ -49,14 +49,20 @@
       </div>
   
       <div class="main-code-box">
-        <div class="code-title">
-            sketch-1.js
+        <div class="code-buttons">
+          <label>file: </label>
+          <select id="file-select">
+            <option id="first-code-title" class="code-title" value="sketch-1">sketch-1.js</option>
+            <template id="code-title-template">
+              <option class="code-title" value=""></option>
+            </template>
+          </select>
         </div>
+
         <div class="code">
-          <pre><code class="language-js"></code></pre>
+          <pre><code id="code-content" class="language-js"></code></pre>
         </div>
       </div>
-
     </div>
   </div>
     
