@@ -21,6 +21,7 @@ function windowResized(){
     fillArray();
     background(30);
 
+    loop()
 }
 
 function draw() {
@@ -35,17 +36,6 @@ function draw() {
 
     if(frameCount === 1){
         noLoop()
-    }
-}
-
-let x = false;
-function mousePressed(){
-    if(x === false){
-        loop();
-        x = true;
-    } else {
-        noLoop()
-        x = false;
     }
 }
 

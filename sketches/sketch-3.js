@@ -38,18 +38,6 @@ function draw() {
     }
 }
 
-let x = false;
-function mousePressed(){
-    if(x === false){
-        loop();
-        x = true;
-    } else {
-        noLoop()
-        x = false;
-    }
-}
-
-
 let points = [];
 function fillArray(){
     let length = 400;
@@ -73,6 +61,7 @@ function fillArray(){
         }
     }
 }
+
 
 class BasicShape{
     startX

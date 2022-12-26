@@ -1,4 +1,4 @@
-import {MainController} from "./models/mainController.js"
+import {MainController} from "./controllers/mainController.js"
 
 window.onload = async function() {
     //MainController only gets loaded if frame is not in an iframe
@@ -27,7 +27,11 @@ function loadJS() {
     let scriptEle = document.createElement("script");
     
     if(window.location === window.parent.location){
-        scriptEle.setAttribute("src", localStorage.getItem("sketch"));
+        if (localStorage.getItem("sketch") === undefined){
+            scriptEle.setAttribute("src", "./sketches/sketch-2.js");
+        } else {
+            scriptEle.setAttribute("src", localStorage.getItem("sketch"));
+        }
        
     }else{
         scriptEle.setAttribute("src", "./sketches/sketch-2.js");

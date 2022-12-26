@@ -20,6 +20,7 @@ function windowResized(){
 
     fillArray();
     background(30);
+
 }
 
 function draw() {
@@ -31,7 +32,12 @@ function draw() {
             element.checkCoord(e)
         });
     });
+
+    if(frameCount === 1){
+        noLoop()
+    }
 }
+
 
 
 let points = [];
@@ -93,7 +99,6 @@ class BasicShape{
         // rotate(angle + this.x + this.y)
         
         //Draw shape
-        // noStroke()
         rect(0, 0, this.size, this.size, 0)
         pop();
     }
@@ -120,6 +125,7 @@ class BasicShape{
             this.x = e.startX
             this.y = e.startY
             this.b = random(30, 255)
+            this.size = random(10, 35)
         } 
     }
     
