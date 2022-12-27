@@ -40,8 +40,8 @@ export class FrameController{
             this.loopBoolean = false;
         });   
         document.addEventListener('keydown', (event) => {
-            event.preventDefault();
             if(event.code === "Space"){
+                event.preventDefault();
                 if (this.loopBoolean === true){
                     noLoop(); 
                     this.loopBoolean = false;
