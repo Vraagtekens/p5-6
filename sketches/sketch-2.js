@@ -20,6 +20,7 @@ function windowResized(){
 
     fillArray();
     background(30);
+
 }
 
 function draw() {
@@ -27,15 +28,23 @@ function draw() {
         element.draw()
         element.changeCoord()
 
-        points.forEach(e => {
-            element.checkCoord(e)
-        });
     });
+
+    if(frameCount === 1){
+        noLoop()
+    }
 }
 
+function mousePressed(){
+    (points[0].x <= mouseX + 1 && points[0].x >= mouseX - 1)
+}
 
 let points = [];
-function fillArray(){
+let maxWidth;
+let minWidth;
+let maxHeight; 
+let minHeiht;
+function setFrameSize(){
     let length = 400;
     if(windowHeight >= windowWidth){
         length = 300
@@ -44,12 +53,15 @@ function fillArray(){
         length = 200
     }
 
-    const margin = 50
-    const maxWidth = (width/2) + length
-    const minWidth = (width/2) - length
-    const maxHeight = (height/2) + length
-    const minHeiht = (height/2) - length
+    maxWidth = (width/2) + length
+    minWidth = (width/2) - length
+    maxHeight = (height/2) + length
+    minHeiht = (height/2) - length
+}
 
+function fillArray(){
+    setFrameSize();
+    const margin = 50
     for (let x = minWidth; x < maxWidth; x += margin) {
         for (let y = minHeiht; y < maxHeight; y += margin) {
             if(!(x === minWidth || x === maxWidth || y === minHeiht || y === maxHeight))
@@ -57,6 +69,7 @@ function fillArray(){
         }
     }
 }
+
 
 class BasicShape{
     startX
@@ -76,52 +89,57 @@ class BasicShape{
         this.startY = y
         this.size = 30;
 
-        this.r = random(30, 255)
-        this.g = random(30, 255)
-        this.b = random(30, 255)
+        this.changeColor()
     }
 
     draw(){
         push();
         //color
         
-        fill(this.r, this.g, this.b)
+        fill(this.r, this.g, this.b, this.b)
 
         //Transform shape
         rectMode(CENTER)
         translate(this.x, this.y)
-        // rotate(angle + this.x + this.y)
+        // rotate(frameCount * 0.1);
         
         //Draw shape
-        // noStroke()
         rect(0, 0, this.size, this.size, 0)
         pop();
     }
 
     changeCoord(){
         const i = 2
-        if (this.x < mouseX){
-            this.x += i
-        } else if(this.x > mouseX) {
-            this.x -= i
-        }
+        if((this.x <= mouseX + 2 && this.x >= mouseX - 2) &&
+        (this.y <= mouseY + 2 && this.y >= mouseY - 2)){
+            this.x = this.startX;
+            this.y = this.startY
+            this.size = 50
 
-        if (this.y < mouseY){
-            this.y += i
-        } else if(this.x > mouseY) {
-            this.y -= i
+            this.changeColor()
+        } else {
+            this.size = 30
+            if (this.x < mouseX){
+                this.x += i
+            } else {
+                this.x -= i
+            }
+    
+            if (this.y  < mouseY){
+                this.y += i
+            } else {
+                this.y -= i
+            }
         }
-
     }
 
-    checkCoord(e){
-        //checkt ook eigen waarde
-        if((this.x === e.x || this.y === e.y) && (e.x === this.startX || e.y === this.startY)){
-            this.x = e.startX
-            this.y = e.startY
-            this.b = random(30, 255)
-        } 
+    changeColor(){
+        this.r = random(30, 255)
+        this.g = random(30, 255)
+        this.b = random(30, 255)
     }
+
+    
     
 }
 

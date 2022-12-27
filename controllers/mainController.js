@@ -16,7 +16,7 @@ export class MainController{
     frameController;
 
     constructor(){
-        this.repoName = "p5-5"
+        this.repoName = "p5-6"
         this.frame = document.querySelector("#frame");
         this.frameTitle = document.querySelector(".frame-title")
         this.sketchScript = document.querySelector("#sketch-script")
