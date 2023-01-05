@@ -1,6 +1,9 @@
 let cabin;
 let img;
+
+
 function preload(){
+    
     cabin = loadFont('assets/Cabin-SemiBold.ttf');
     img = loadImage('assets/tms/hm-flying.png')
 }
@@ -25,8 +28,6 @@ function windowResized(){
     } else {
         resizeCanvas(frame.offsetWidth, frame.offsetHeight)
     }
-
-    background(30);
 
     loop()
 }

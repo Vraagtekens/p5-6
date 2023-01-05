@@ -1,13 +1,20 @@
 let cabin;
+
+// async function bruh(){
+//     console.log(await fetch('https://fonts.googleapis.com/css?family=Cabin'));
+// }
+
+// bruh()
+
 function preload(){
-    cabin = loadFont('assets/Cabin-SemiBold.ttf');
+    cabin = loadFont('/assets/Cabin-SemiBold.ttf');
 }
 
 function setup() {
     const frame = document.querySelector("#frame");
     let canvas = createCanvas(frame.offsetWidth, frame.offsetHeight, WEBGL);
     canvas.parent('frame');
-
+ 
     angleMode(RADIANS)
     frameRate(30)
     
