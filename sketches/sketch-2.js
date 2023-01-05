@@ -3,9 +3,8 @@ let img;
 
 
 function preload(){
-    
-    cabin = loadFont('assets/Cabin-SemiBold.ttf');
-    img = loadImage('assets/tms/hm-flying.png')
+    cabin = loadFont('/assets/Cabin-SemiBold.ttf');
+    img = loadImage('/assets/tms/hm-flying.png')
 }
 
 function setup() {
